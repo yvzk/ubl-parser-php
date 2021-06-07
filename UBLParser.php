@@ -349,11 +349,34 @@ class UBLParser
             }elseif( $node2->nodeType === XML_ELEMENT_NODE && $node2->nodeName === 'cac:Item' ) {
 
                 foreach ($node2->childNodes as $node3){
+                    
+                    if ( $node3->nodeType <> XML_ELEMENT_NODE )
+                        continue;
+                    
 
-                    if( $node3->nodeType === XML_ELEMENT_NODE && $node3->nodeName === 'cbc:Name' ) {
+                    if( $node3->nodeName === 'cbc:Name' )
                         $invoiceLine['Item']['Name'] = $node3->nodeValue;
 
-                    }
+                    if( $node3->nodeName === 'cbc:Description' )
+                        $invoiceLine['Item']['Description'] = $node3->nodeValue;
+
+                    if( $node3->nodeName === 'cbc:BrandName' )
+                        $invoiceLine['Item']['BrandName'] = $node3->nodeValue;
+
+                    if( $node3->nodeName === 'cbc:ModelName' )
+                        $invoiceLine['Item']['ModelName'] = $node3->nodeValue;
+
+                    if( $node3->nodeName === 'cbc:BuyersItemIdentification' )
+                        $invoiceLine['Item']['BuyersItemIdentification'] = $node3->nodeValue;
+
+                    if( $node3->nodeName === 'cbc:SellersItemIdentification' )
+                        $invoiceLine['Item']['SellersItemIdentification'] = $node3->nodeValue;
+
+                    if( $node3->nodeName === 'cbc:ManufacturersItemIdentification' )
+                        $invoiceLine['Item']['ManufacturersItemIdentification'] = $node3->nodeValue;
+
+                    if( $node3->nodeName === 'cbc:CommodityClassification' )
+                        $invoiceLine['Item']['CommodityClassification'] = $node3->nodeValue;
 
                 }
             }elseif( $node2->nodeType === XML_ELEMENT_NODE && $node2->nodeName === 'cac:Price' ) {
